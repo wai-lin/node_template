@@ -8,6 +8,7 @@ const environmentSchema = z
 
 const dotEnvSchema = z.object({
 	NODE_ENV: environmentSchema,
+	PORT: z.coerce.number().default(3000),
 
 	DB_HOST: z.string(),
 	DB_PORT: z.coerce.number(),
@@ -40,5 +41,6 @@ export function loadDotEnv(rootDir: string) {
 
 	config({ path: configPath, override: true })
 
-	global.env = dotEnvSchema.parse(process.env)
+	const parsed = dotEnvSchema.parse(process.env)
+	global.env = parsed
 }

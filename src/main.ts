@@ -1,11 +1,32 @@
+import express from "express"
+import http from "node:http"
 import path from "node:path"
-import { getDirname } from "./lib/dirname.js"
-import { loadDotEnv } from "./lib/env.js"
+
+import { getDirname } from "../lib/dirname.js"
+import { loadDotEnv } from "../lib/env.js"
 
 const _dirname = getDirname()
 const rootDir = path.resolve(_dirname, "..")
-console.log(loadDotEnv(rootDir))
 
-// const app = express()
+loadDotEnv(rootDir)
 
-// app.listen(3000, () => {})
+/**
+ * Main function that starts server.
+ */
+function main() {
+	const app = express()
+
+	const server = http.createServer(app).listen(global.env.PORT)
+	server.on("error", (err) => {
+		server.close()
+		setTimeout(() => server.listen(global.env.PORT), 1000) // Auto restart server on error
+	})
+}
+
+try {
+	main()
+} catch (err) {
+	console.log("Server exited with error: ")
+	console.error(err)
+	process.exit(1)
+}
