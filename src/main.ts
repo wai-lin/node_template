@@ -16,6 +16,11 @@ loadDotEnv(rootDir)
 function main() {
 	const app = express()
 
+	app.use(
+		express.urlencoded({ extended: true }),
+		express.json(),
+	)
+
 	const server = http.createServer(app).listen(global.env.PORT)
 	server.on("error", (err) => {
 		server.close()

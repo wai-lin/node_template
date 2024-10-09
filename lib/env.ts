@@ -12,9 +12,10 @@ const dotEnvSchema = z.object({
 
 	DB_HOST: z.string(),
 	DB_PORT: z.coerce.number(),
-	DB_USERNAME: z.string(),
+	DB_USER: z.string(),
 	DB_PASSWORD: z.string(),
 	DB_DATABASE: z.string(),
+	DB_SSL_CONNECTION: z.enum(["true", "false"]).transform((v) => v === "true"),
 
 	REDIS_HOST: z.string(),
 	REDIS_PORT: z.coerce.number(),
