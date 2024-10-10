@@ -22,7 +22,7 @@ some pre-written frequently used backend features.
   - [ ] Send email with Scheduler
 - [ ] Authentication
   - [ ] Default Auth with Email & Password
-  - [ ] JsonWebToken
+  - [x] JsonWebToken
   - [ ] 2-Steps Login
   - [ ] O-Auth Integrations
     - [ ] Google

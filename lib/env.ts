@@ -10,6 +10,9 @@ const dotEnvSchema = z.object({
 	NODE_ENV: environmentSchema,
 	PORT: z.coerce.number().default(3000),
 
+	JWT_SECRET: z.string().default("foo_bar_baz"),
+	JWT_EXPIRES_IN: z.string().default("1h"),
+
 	DB_HOST: z.string(),
 	DB_PORT: z.coerce.number(),
 	DB_USER: z.string(),

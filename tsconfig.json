@@ -1,11 +1,23 @@
 {
 	"extends": "@total-typescript/tsconfig/tsc/no-dom/app",
-	"include": ["global.d.ts", "drizzle*.config.ts", "src/**/*", "lib/**/*", "database/**/*"],
 	"compilerOptions": {
 		"noEmit": true,
 		"allowImportingTsExtensions": true,
 		"typeRoots": ["./node_modules/@types", "./types"],
 		"sourceMap": true,
-		"outDir": "dist"
-	}
+		"outDir": "dist",
+		"baseUrl": ".",
+		"paths": {
+			"@src/*": ["./src/*"],
+			"@lib/*": ["./lib/*"],
+			"@database/*": ["./database/*"]
+		}
+	},
+	"include": [
+		"global.d.ts",
+		"drizzle*.config.ts",
+		"src/**/*",
+		"lib/**/*",
+		"database/**/*"
+	]
 }
